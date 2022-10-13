@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_talk_app/model/model_movie.dart';
-import 'package:flutter_talk_app/widget/%08carousel_slider.dart';
+import 'package:flutter_talk_app/widget/carousel_slider.dart';
+import 'package:flutter_talk_app/widget/circle_slider.dart';
+
+import '../widget/box_slider.dart';
 
 // 영화정보를 백엔드에서 가져오기 위해 StatefulWidget 생성
 class HomeScreen extends StatefulWidget {
@@ -43,13 +46,17 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return ListView(children: <Widget>[
-      // 상단 바에 ListView 안에 Stack 생성, CarouselImageSlider와 TopBar 추가
+      // 상단 - 바에 ListView 안에 Stack 생성, CarouselImageSlider와 TopBar 추가
       Stack(
         children: <Widget>[
           CarouselImage(movies: movies),
           TopBar(),
         ],
-      )
+      ),
+      // 중단 - 원형 슬라이더
+      CirecleSlider(movies: movies),
+      // 중단 - 박스 슬라이더
+      BoxSlider(movies: movies)
     ]);
     // return TopBar();
     // return Container(
