@@ -2,6 +2,8 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_talk_app/model/model_movie.dart';
 
+import '../screen/detail_screen.dart';
+
 // 해당 위젯은 이미지를 보여주면서 찜하기, 디테일 페이지를 띄우는 기능을 담고있기 때문에 StatefulWidget
 class CarouselImage extends StatefulWidget {
   final List<Movie>? movies; // List<Movie>, nullable 로 수정
@@ -95,7 +97,19 @@ class _CarouselImageState extends State<CarouselImage> {
                 Container(
                   padding: EdgeInsets.only(right: 10),
                   child: Column(children: <Widget>[
-                    IconButton(onPressed: () {}, icon: Icon(Icons.info)),
+                    IconButton(
+                      onPressed: () {
+                        // 영화 상세로 이동
+                        Navigator.of(context).push(MaterialPageRoute<Null>(
+                            fullscreenDialog: true,
+                            builder: (BuildContext context) {
+                              return DetailScreen(
+                                movie: movies![_currentPage],
+                              );
+                            }));
+                      },
+                      icon: Icon(Icons.info),
+                    ),
                     Text('정보', style: TextStyle(fontSize: 11))
                   ]),
                 ),
