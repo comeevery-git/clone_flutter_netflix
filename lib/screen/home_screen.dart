@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_talk_app/model/model_movie.dart';
+import 'package:flutter_talk_app/widget/%08carousel_slider.dart';
 
 // 영화정보를 백엔드에서 가져오기 위해 StatefulWidget 생성
 class HomeScreen extends StatefulWidget {
@@ -6,6 +8,33 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  // 임시 무비 객체
+  List<Movie> movies = [
+    Movie.fromMap({
+      'title': '사랑의 불시착',
+      'keyword': '사랑/로맨스/판타지',
+      'poster': 'test_movie_1.png',
+      'like': false
+    }),
+    Movie.fromMap({
+      'title': '사랑의 전쟁터',
+      'keyword': '사랑/로맨스/스릴러',
+      'poster': 'test_movie_1.png',
+      'like': false
+    }),
+    Movie.fromMap({
+      'title': '외+계인 1부',
+      'keyword': '판타지/SF',
+      'poster': 'test_movie_1.png',
+      'like': false
+    }),
+    Movie.fromMap({
+      'title': '코-메디',
+      'keyword': '코믹',
+      'poster': 'test_movie_1.png',
+      'like': false
+    }),
+  ];
   @override
   void initState() {
     super.initState();
@@ -13,7 +42,16 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return TopBar();
+    return ListView(children: <Widget>[
+      // 상단 바에 ListView 안에 Stack 생성, CarouselImageSlider와 TopBar 추가
+      Stack(
+        children: <Widget>[
+          CarouselImage(movies: movies),
+          TopBar(),
+        ],
+      )
+    ]);
+    // return TopBar();
     // return Container(
     //   child: Center(
     //     child: Text('찐 홈'),
