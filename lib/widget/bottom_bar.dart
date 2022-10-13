@@ -16,6 +16,16 @@ class Bottom extends StatelessWidget {
             // 각 탭 생성
             Tab(
               icon: Icon(
+                Icons.home,
+                size: 18,
+              ),
+              child: Text(
+                '홈',
+                style: TextStyle(fontSize: 9),
+              ),
+            ),
+            Tab(
+              icon: Icon(
                 Icons.search,
                 size: 18,
               ),
@@ -24,7 +34,6 @@ class Bottom extends StatelessWidget {
                 style: TextStyle(fontSize: 9),
               ),
             ),
-
             Tab(
               icon: Icon(
                 Icons.save_alt,
@@ -35,18 +44,6 @@ class Bottom extends StatelessWidget {
                 style: TextStyle(fontSize: 9),
               ),
             ),
-
-            Tab(
-              icon: Icon(
-                Icons.home,
-                size: 18,
-              ),
-              child: Text(
-                '홈',
-                style: TextStyle(fontSize: 9),
-              ),
-            ),
-
             Tab(
               icon: Icon(
                 Icons.list,

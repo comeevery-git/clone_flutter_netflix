@@ -1,6 +1,9 @@
 name: flutter_talk_app
 description: A new Flutter project.
 
+# pubspec.yaml 파일 저장 시 flutter sdk는 자동으로 패키지 업데이트 진행
+# 추후 패키지 설치 시 여기서 진행
+
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -60,8 +63,9 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
+  # APP LOGO
+  assets:
+    - images/flix_logo.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
