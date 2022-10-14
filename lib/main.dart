@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_talk_app/screen/home_screen.dart';
+import 'package:flutter_talk_app/screen/more_screen.dart';
 import 'package:flutter_talk_app/widget/bottom_bar.dart';
 
 void main() => runApp(MyApp());
@@ -23,27 +24,23 @@ class _MyAppState extends State<MyApp> {
         length: 4, // 바텀 메뉴 개수
         child: Scaffold(
           body: TabBarView(
-              physics:
-                  NeverScrollableScrollPhysics(), // 직접 손으로 탭 조정하는 것을 막겠다는 옵션
-              children: [
-                //안에 넣을 화면
-                HomeScreen(),
-                Container(
-                  child: Center(
-                    child: Text('검색'),
-                  ),
+            physics: NeverScrollableScrollPhysics(), // 직접 손으로 탭 조정하는 것을 막겠다는 옵션
+            children: [
+              //안에 넣을 화면
+              HomeScreen(),
+              Container(
+                child: Center(
+                  child: Text('검색'),
                 ),
-                Container(
-                  child: Center(
-                    child: Text('save'),
-                  ),
+              ),
+              Container(
+                child: Center(
+                  child: Text('save'),
                 ),
-                Container(
-                  child: Center(
-                    child: Text('list'),
-                  ),
-                ),
-              ]),
+              ),
+              MoreScreen(),
+            ],
+          ),
           bottomNavigationBar: Bottom(), // 바텀,
         ),
       ),

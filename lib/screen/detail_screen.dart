@@ -157,8 +157,10 @@ class _DetailScreenState extends State<DetailScreen> {
                           Padding(padding: EdgeInsets.all(5)),
                           Text(
                             '내가 찜한 콘텐츠',
-                            style:
-                                TextStyle(fontSize: 11, color: Colors.white60),
+                            style: TextStyle(
+                              fontSize: 11,
+                              color: Colors.white60,
+                            ),
                           ),
                         ]),
                       ),

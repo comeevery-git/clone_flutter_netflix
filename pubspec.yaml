@@ -36,6 +36,11 @@ dependencies:
     sdk: flutter
   carousel_slider:
     # carousel_slider 설치
+  flutter_linkify:
+  url_launcher:
+    # linkify 설치 - url_launcher 의존성 추가 후 빌드 실패, 
+    # brew install cocoapods
+    # https://stackoverflow.com/questions/64901180/how-to-run-cocoapods-on-apple-silicon-m1
 
 
   # The following adds the Cupertino Icons font to your application.
