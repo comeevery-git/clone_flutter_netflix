@@ -1,8 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_talk_app/model/model_movie.dart';
 import 'package:flutter_talk_app/widget/carousel_slider.dart';
 import 'package:flutter_talk_app/widget/circle_slider.dart';
-
+import '../model/model_movie.dart';
 import '../widget/box_slider.dart';
 
 // 영화정보를 백엔드에서 가져오기 위해 StatefulWidget 생성
@@ -11,40 +11,40 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
+  Stream<QuerySnapshot>? streamData;
+
   // 임시 무비 객체
-  List<Movie> movies = [
-    Movie.fromMap({
-      'title': '사랑의 불시착',
-      'keyword': '사랑/로맨스/판타지',
-      'poster': 'test_movie_1.png',
-      'like': false
-    }),
-    Movie.fromMap({
-      'title': '사랑의 전쟁터',
-      'keyword': '사랑/로맨스/스릴러',
-      'poster': 'test_movie_1.png',
-      'like': false
-    }),
-    Movie.fromMap({
-      'title': '외+계인 1부',
-      'keyword': '판타지/SF',
-      'poster': 'test_movie_1.png',
-      'like': false
-    }),
-    Movie.fromMap({
-      'title': '코-메디',
-      'keyword': '코믹',
-      'poster': 'test_movie_1.png',
-      'like': false
-    }),
-  ];
+  // List<Movie> movies = [
+  //   Movie.fromMap({
+  //     'title': '사랑의 불시착',
+  //     'keyword': '사랑/로맨스/판타지',
+  //     'poster': 'test_movie_1.png',
+  //     'like': false
+  //   }),
+  // ];
+
   @override
   void initState() {
     super.initState();
+    streamData = firestore.collection('movie').snapshots();
   }
 
-  @override
-  Widget build(BuildContext context) {
+  // firestore 실제 데이터 패치
+  Widget _fetchData(BuildContext context) {
+    return StreamBuilder<QuerySnapshot>(
+      stream: FirebaseFirestore.instance.collection('movie').snapshots(),
+      builder: (context, snapshot) {
+        // 데이터 못가져 왔을 시 LinearProgressIndicator 로딩화면
+        if (!snapshot.hasData) return LinearProgressIndicator();
+        // 데이터 가져왔다면 _buildBody 호출하여 실제 위젯 생성
+        return _buildBody(context, snapshot.data!.docs);
+      },
+    );
+  }
+
+  Widget _buildBody(BuildContext context, List<DocumentSnapshot> snapshot) {
+    List<Movie> movies = snapshot.map((d) => Movie.fromSnapshot(d)).toList();
     return ListView(children: <Widget>[
       // 상단 - 바에 ListView 안에 Stack 생성, CarouselImageSlider와 TopBar 추가
       Stack(
@@ -58,12 +58,11 @@ class _HomeScreenState extends State<HomeScreen> {
       // 중단 - 박스 슬라이더
       BoxSlider(movies: movies)
     ]);
-    // return TopBar();
-    // return Container(
-    //   child: Center(
-    //     child: Text('찐 홈'),
-    //   ),
-    // );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return _fetchData(context);
   }
 }
 

@@ -1,16 +1,21 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_talk_app/screen/home_screen.dart';
 import 'package:flutter_talk_app/screen/more_screen.dart';
 import 'package:flutter_talk_app/widget/bottom_bar.dart';
 
-void main() => runApp(MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
+}
 
 class MyApp extends StatefulWidget {
   _MyAppState createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
-  late TabController controller;
+  TabController? controller;
 
   @override
   Widget build(BuildContext context) {

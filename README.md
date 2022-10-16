@@ -9,3 +9,7 @@
 - macOs
 - [Flutter](https://docs.flutter.dev/get-started/install/macos)
 - [Inflearn] (https://www.inflearn.com/course/flutter-netflix-clone-app/dashboard)
+
+# firebase 연동
+
+- [firebase 연동 공식 페이지] (https://console.firebase.google.com/u/0/project/flutter-app-59e13/overview?hl=ko)
